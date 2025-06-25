@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brava Book 🦜</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+</head>
+
+<body>
+    <main class="container">
+        <h1>Reserva ya tu apartamento en Brava Book</h1>
+        <section>
+            <% allApartments.forEach(function(apt) { %>
+                <article>
+                    <header><%= apt.title  %></header>
+                    <img src="<%= apt.mainPhoto %>" alt="<%= apt.title %>">
+                    <footer><%= apt.price %> €</footer>
+                </article>
+            <% }); %>
+
+        </section>
+    </main>
+</body>
+
+</html>
