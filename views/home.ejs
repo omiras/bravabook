@@ -10,15 +10,18 @@
 </head>
 
 <body>
-    <main class="container">
+    <main class="container" style="width: 50%;">
         <h1>Reserva ya tu apartamento en Brava Book</h1>
         <section>
             <% allApartments.forEach(function(apt) { %>
-                <article>
-                    <header><%= apt.title  %></header>
-                    <img src="<%= apt.mainPhoto %>" alt="<%= apt.title %>">
-                    <footer><%= apt.price %> €</footer>
-                </article>
+                
+                <a href="/apartment/<%= apt._id %>">
+                    <article>
+                        <header><%= apt.title  %></header>
+                        <img src="<%= apt.mainPhoto %>" alt="<%= apt.title %>">
+                        <footer><%= apt.price %> €</footer>
+                    </article>
+                </a>
             <% }); %>
 
         </section>
