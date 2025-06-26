@@ -42,7 +42,7 @@ MONGODB_URI=mongodb://localhost:27017/bravabook
 Inicia la aplicación con el siguiente comando:
 
 ```bash
-npm start
+npm run dev
 ```
 
 La aplicación estará disponible en `http://localhost:<PORT>`.
