@@ -25,5 +25,5 @@ await connectDB();
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, ()=> {
-    console.log("Escuchando peticiones en el puerto http://localhost:3000");
+    console.log(`Escuchando peticiones en el puerto http://localhost:${PORT}`);
 })
