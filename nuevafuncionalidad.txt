@@ -1,0 +1,10 @@
+1. ¿Tenemos que modificar el modelo? 
+  - No. Simplemente queremos obtener documentos que cumplan
+    ciertos criterios
+2. Como permito la interacció el usuario. ¿He de modificar
+   o crear alguna vista?
+      - DEbemos modificar home.ejs
+3. ¿Hay que crear rutas y controladores nuevos?
+    - "/" -> ver si el usuario quiere filtrar por algun campo
+    - "/search" -> el controlador ya recuperaria los apartamentos
+                    que cumplan con cierto criteiro (precio maximo)

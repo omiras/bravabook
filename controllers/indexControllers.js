@@ -5,9 +5,14 @@ export const getApartments = async (req, res)=> {
     const allApartments = await Apartment.find();
     console.log("🚀 ~ app.get ~ allApartments:", allApartments)
 
+    // TODO: Buscar el precio máximo de todos mis apartamentos en la base de datos. Establecer ese valor en filters.maxPrice
+
    // 2. Este endpoint va a pasar los datos una vista
     res.render('home.ejs', {
-        allApartments
+        allApartments,
+        filters: {
+            maxPrice: ""
+        }
     })
 };
 
@@ -23,4 +28,20 @@ export const getApartmentById = async (req, res)=> {
         apartment
     })
 
+}
+
+export const searchApartments = async (req, res) => {
+    // 1. Obtener la query string del objeto request
+    const { maxPrice } = req.query;
+
+    // 2. Filtrar todos los apartamentos de la base de datos por TODOS los criterios de búsqueda que ha informado el usuario
+    const filteredApartments = await Apartment.find({ price: { $lte: maxPrice }});
+
+    // 3. PAsar el resultado de la búsqueda a la vista
+    res.render('home.ejs' , {
+        allApartments: filteredApartments,
+        filters : {
+            maxPrice: maxPrice
+        }
+    })
 }

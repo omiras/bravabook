@@ -12,6 +12,11 @@
 <body>
     <main class="container" style="width: 50%;">
         <h1>Reserva ya tu apartamento en Brava Book</h1>
+        <form action="/search" method="get">
+            <label for="maxPrice">Precio máximo por noche</label>
+            <input type="number" name="maxPrice" id="maxPrice" value="<%= filters.maxPrice %>" required>
+            <input type="submit" value="Buscar">
+        </form>
         <section>
             <% allApartments.forEach(function(apt) { %>
                 
