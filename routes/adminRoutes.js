@@ -1,5 +1,5 @@
 import express from 'express';
-import { getNewApartment, postNewApartment } from '../controllers/adminControllers.js';
+import { getEditApartment, getNewApartment, postEditApartment, postNewApartment } from '../controllers/adminControllers.js';
 
 const router = express.Router();
 
@@ -8,4 +8,12 @@ router.get("/apartment/new", getNewApartment);
 
 // endpoint AÑADIR APARTMENTO - POST - INSERTAR APARTAMENTO EN LA BASE DE DATOS
 router.post("/apartment", postNewApartment);
+
+
+//endpoint FORMULARIO PARA EDITAR APARTAMENTO 
+router.get("/apartment/:id/edit", getEditApartment);
+
+//endpoint ACTUALIZAR DATOS DEL APARTAMENTO
+router.post("/apartment/:id/edit", postEditApartment);
+
 export default router;
