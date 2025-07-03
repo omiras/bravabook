@@ -63,3 +63,15 @@ export const postEditApartment = async (req, res) => {
     // TODO: Faltaria algún mensaje de confirmacion
     res.redirect(`/apartment/${id}`)
 }
+
+export const deleteApartment = async (req, res) => {
+    // 1. Obtener el id del apartmento
+    const { id } = req.params;
+    console.log("🚀 ~ deleteApartment ~ id:", id)
+
+    // 2. Usar el metodo Apart.findByIdAndDelete para eliminar el documento
+    await Apartment.findByIdAndDelete(id);
+
+    // 3. Redirigit al usuario a la vista principal
+    res.redirect('/');
+}

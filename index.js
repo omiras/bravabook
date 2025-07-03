@@ -14,6 +14,9 @@ const app = express();
 // Poder procesar información de los formularios
 app.use(express.urlencoded({extended: true}));
 
+// Usar la carpeta public para obtener recursos 
+app.use(express.static('public'));
+
 app.use(indexRoutes);
 app.use("/admin", adminRoutes); // todas las rutas que se encuentran en adminRouter van a ser prefijadas por "/admin"
 

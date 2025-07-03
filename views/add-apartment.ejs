@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Nuevo Apartamento</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 
 <body>
@@ -23,6 +25,14 @@
              <input type="url" name="mainPhoto" id="mainPhoto" value="<%= apartment.mainPhoto %>">
              <input type="submit" value="<%= editMode? "Acutalizar": "Añadir" %>">
         </form>
+
+        <% if (editMode) { %>
+
+        <form action="/admin/apartment/<%= editMode? apartment._id + "/delete" : "" %>" method="post">
+        <input class="btn--danger" type="submit" value="Eliminar Apartamento">
+        </form>
+
+        <% } %>
     </main>
 </body>
 
