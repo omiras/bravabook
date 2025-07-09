@@ -20,6 +20,24 @@ const servicesSchema = new Schema({
     }
 });
 
+// schema para gestionar las reservas
+const reservationSchema = Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    startDate: {
+        type: Date,
+        required: true
+    },
+    endDate: {
+        type: Date,
+        required: true
+        // TODO: podéis preguntar a CHAT como realizar una validación para que startDate sea siempre antes que endDate
+    }
+});
+
+
 const apartmentSchema = new Schema({
     title: {
         type: String,
@@ -41,7 +59,8 @@ const apartmentSchema = new Schema({
         type: servicesSchema,
         required: true,
         _id: false
-    }
+    },
+    reservations: [reservationSchema]
 
     // TODO: Añadid las validaciones que creáis conveniente, PERO NO TODAVÍA. Hasta que no podamos insertar apartamentos en la base de datos. Crear formulariom, conectar con app.post, etc. Validaciones,Complejidad <-------> consigas algo pronto
 });

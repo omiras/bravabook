@@ -30,6 +30,26 @@ export const getApartmentById = async (req, res)=> {
 
 }
 
+export const postNewReservation = async (req, res) => {
+    // 1. Obtener el email, fecha de inicio de la reserva, y fecha de fin
+    const {idApartment, email, startDate, endDate} = req.body;
+    
+    // 2 Obtener el ID del apartamento a reservar
+    const reservedApartment = await Apartment.findById(idApartment);
+    
+    // 3. Añadir un nuevo objeto al campo apartment.reservations
+    reservedApartment.reservations.push({
+        email,
+        startDate,
+        endDate
+    });
+
+    // 4. Salvar el documento en la base de datos
+    await reservedApartment.save();
+
+    res.send(`Tu reserva ha sido realizada con éxito. Volver a <a href="/">HOME</a>`);
+}
+
 export const searchApartments = async (req, res) => {
     // 1. Obtener la query string del objeto request
     const { maxPrice } = req.query;
