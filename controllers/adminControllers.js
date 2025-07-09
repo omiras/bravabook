@@ -16,7 +16,12 @@ export const postNewApartment = async (req, res)=> {
             title: title,
             price: price,
             squareMeters: size,
-            mainPhoto: mainPhoto
+            mainPhoto: mainPhoto,
+            services: {
+                wifi: false,
+                parking: false,
+                disability: false
+            }
 
         });
 
