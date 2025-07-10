@@ -2,14 +2,16 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brava Book 🦜</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <%- include('./partials/head.ejs') %>
+
 
 </head>
 
 <body>
+    <header class="container-fluid">
+        <%- include('./partials/header.ejs') %>
+    </header>
     <main class="container" style="width: 50%;">
         <h1>Reserva ya tu apartamento en Brava Book</h1>
         <form action="/search" method="get">
