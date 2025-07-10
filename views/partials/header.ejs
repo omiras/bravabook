@@ -4,4 +4,12 @@
     </p>
     <p> <a href="/admin/apartment/new">Añadir nuevo apartamento</a>
     </p>
-   </div>
+    <p>
+         <% if (isAuthenticated) { %>
+        <p><a href="/logout">Logout</a></p>
+        <% } else { %>
+            <p><a href="/login">Login</a></p>
+            <% } %>
+    </p>
+</div>
+

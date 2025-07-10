@@ -26,6 +26,14 @@ app.use(session({
     cookie: { secure: false } // secure: true en producción con HTTPS
 }));
 
+// Vamos a configurar unas variables para que SIEMPRE esten disponibles en todas las vistas, sin tenerlas que pasar de forma explícita des de el controlador
+app.use((req, res, next)=> {
+    // La propiedad locals permite que las variables que esten dentro de este objeto esten presentes en todas las vistas, y las puedas usar en el EJS
+    res.locals.isAuthenticated = req.session.isAuthenticated;
+
+    next();
+});
+
 // Middleware para proteger las rutas de administrador
 app.use('/admin', (req, res, next) => {
     // Miramos si el usuario esta autentificado

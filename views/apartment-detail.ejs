@@ -13,11 +13,14 @@
             <header><%= apartment.title %></header>
             <article><img src="<%= apartment.mainPhoto %>" alt=""></article>
             <footer><%= apartment.price %> € | <%= apartment.squareMeters %> m<sup>2</sup> </footer>
-            <a href="/admin/apartment/<%= apartment._id %>/edit">Editar</a>
         </section>
         <section>
-            <h2>Reservar Apartamento</h2>
-             <form action="/apartment/reservation/new" method="post">
+          <div class="container">
+            <% if (isAuthenticated) { %>
+                <a href="/admin/apartment/<%= apartment._id %>/edit/">Editar apartamento</a>
+                <% } else { %>
+                    <h2>Datos de la reserva</h2>
+                    <form action="/apartment/reservation/new" method="post">
                         <input type="hidden" name="idApartment" value="<%= apartment._id %>">
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email" required>
@@ -27,6 +30,7 @@
                         <input type="date" name="endDate" id="endDate">
                         <input type="submit" value="Reservar">
                     </form>
+                    <% } %>
         </section>
     </main>
 </body>
