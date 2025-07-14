@@ -30,7 +30,7 @@ app.use(session({
 app.use((req, res, next)=> {
     // La propiedad locals permite que las variables que esten dentro de este objeto esten presentes en todas las vistas, y las puedas usar en el EJS
     res.locals.isAuthenticated = req.session.isAuthenticated;
-
+    res.locals.prueba = "Hola soy una prueba";
     next();
 });
 

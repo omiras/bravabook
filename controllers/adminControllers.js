@@ -1,10 +1,13 @@
 import { Apartment } from "../models/Apartment.model.js";
 
 export const getNewApartment = (req, res)=> {
+    
+    
     res.render("add-apartment.ejs", {
         apartment: {},
         editMode: false
     });
+
 };
 
 export const postNewApartment = async (req, res)=> {
