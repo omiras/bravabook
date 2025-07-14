@@ -11,6 +11,7 @@ export const postLoginForm = (req, res) => {
 
     if (username == "admin" && password == "admin") {
         req.session.isAuthenticated = true;
+        req.session.info = `${username} ha iniciado sesión correctamente.`;
         res.redirect('/');
     } else {
         // 2b Si no es correcto, pues le enviaremos un error de autorización y le redirigimos de nuevo al formulario de login
@@ -24,6 +25,8 @@ export const postLoginForm = (req, res) => {
 
 export const Logout = (req, res) => {
     console.log('Logout');
+
+    // TODO: Seria interesante un mensaje típico de "Has cerrado la sesión correctamente"
 
     req.session.destroy(err => {
         if (err) {

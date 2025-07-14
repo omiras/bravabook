@@ -30,7 +30,12 @@ app.use(session({
 app.use((req, res, next)=> {
     // La propiedad locals permite que las variables que esten dentro de este objeto esten presentes en todas las vistas, y las puedas usar en el EJS
     res.locals.isAuthenticated = req.session.isAuthenticated;
-    res.locals.prueba = "Hola soy una prueba";
+
+    // Nos traemos el mensaje informativo que tenga el servidor para el cliente, y lo guardamos en la variable res.locals.info . La variable 'info' está presente en todas las vistas
+    res.locals.info = req.session.info;
+
+    // Luego, eliminamos el mensaje de la variable de sesión para que cuando el usuario "recargue" (vuelva a hacer una petición al servidor) no sigamos viendo el mismo mensaje
+    req.session.info = undefined;
     next();
 });
 

@@ -28,7 +28,11 @@ export const postNewApartment = async (req, res)=> {
 
         });
 
-        res.send('Apartamento insertado correctamente. <a href="/">Volver al HOME</a>');
+        // Actualizamos la variable 'info' de req.session.info para informar al cliente de que se ha añadido el apartamento corectamente
+        req.session.info = "Apartamento añadido correctamente a la base de datos";
+
+        // TODO: A lo mejor lo que tendría que pasar aquí realmente es redirigir al usaurio a la vista detalle del apartamento /apartment/{identificadorApartamento}
+        res.redirect('/');
 
     } catch (error) {
         res.send('Ups! Algo ha ido mal! Hemos informado a los desarrolladres. <a href="/">Volver al HOME</a>');
