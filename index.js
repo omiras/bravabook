@@ -11,6 +11,9 @@ import adminRoutes from './routes/adminRoutes.js';
 // importar el fichero que contiene las rutas para gestionar la autentificación
 import authRoutes from './routes/authRoutes.js';
 
+// importar las rutas de la api
+import apiRoutes from './routes/apiRoutes.js';
+
 // Creamos una instancia de express para definir los endpoints
 
 const app = express();
@@ -56,6 +59,7 @@ app.use(express.static('public'));
 
 app.use(indexRoutes);
 app.use("/admin", adminRoutes); // todas las rutas que se encuentran en adminRouter van a ser prefijadas por "/admin"
+app.use("/api", apiRoutes);
 app.use(authRoutes);
 
 // Conectarnos al a base de datos
