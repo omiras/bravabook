@@ -14,6 +14,16 @@ export const postNewApartment = async (req, res)=> {
 
     const { title, price, size, mainPhoto} = req.body;
 
+    // Aquí es un buen momento para validar los datos que proceden del cliente, y lanzar un error si estos no son válidos
+     // 1. Buena práctica
+     // 2. Lo que no controles o sea difícil controlar a la hora de crear un documento en la base de datos, a veces es más fácil comprobarlo en este punto
+     // Ampliar la seguridad <------> complejidad de tu código
+
+     if (!title || title.length>40) {
+        // nos ha llegado una entrada errónea a nuestro back end
+        return res.status(400).send('Ups! Validación en el controlador. Algo ha ido mal! Hemos informado a los desarrolladres. <a href="/">Volver al HOME</a>');
+     }
+
     try {
         await Apartment.create({
             title: title,

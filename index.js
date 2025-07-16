@@ -1,6 +1,7 @@
 import express from 'express';
 import { connectDB } from './utils/db.js';
 import session from 'express-session';
+import cors from 'cors';
 
 // importamos del fichero correspondiente todas las rutas que tienen que ver con los usuarios generales
 import indexRoutes  from './routes/indexRoutes.js'; 
@@ -59,7 +60,7 @@ app.use(express.static('public'));
 
 app.use(indexRoutes);
 app.use("/admin", adminRoutes); // todas las rutas que se encuentran en adminRouter van a ser prefijadas por "/admin"
-app.use("/api", apiRoutes);
+app.use("/api", cors(), apiRoutes);
 app.use(authRoutes);
 
 // Conectarnos al a base de datos

@@ -41,7 +41,8 @@ const reservationSchema = Schema({
 const apartmentSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 40
     },
     price: {
         type: Number,
