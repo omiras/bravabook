@@ -1,4 +1,4 @@
-import { getApiApartments } from "../controllers/apiControllers.js";
+import { getApiApartments, getFilteredApartments } from "../controllers/apiControllers.js";
 import express from 'express';
 
 const router = express.Router();
@@ -10,6 +10,6 @@ router.get('/apartments', getApiApartments);
 // router.get('/apartments/:id") <-- detalles de un apartmaneto
 
 // Poder buscar por algún parámetro
-// router.get('/apartments/search) <--- por precio máximo
+router.get('/apartments/search', getFilteredApartments); //maxPrice
 
 export default router;
