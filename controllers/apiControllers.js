@@ -10,22 +10,25 @@ export const getApiApartments = async (req, res) => {
 
 export const getFilteredApartments = async (req, res) => {
     // 1. Obtener la query string del objeto request
-    let { maxPrice } = req.query;
+    let { maxPrice, city } = req.query;
 
-    // ¿Qué hacer si no me pasan el parámetro maxPrice o dicho parámetro es un valor inválido?
+    // Validación de maxPrice
     if (!maxPrice || maxPrice < 1) {
         maxPrice = 999999; // obtener todos los apartamentos
+    } else if (isNaN(maxPrice)) {
+        return res.status(400).json({error: "maxPrice must be a positive number"});
     }
 
-    // Si NO me pasan al menos un number, les voy a entregar un error de forma explícita
-    else if (isNaN(maxPrice)) {
-        return res.status(400).json({error: "maxPrice must be a positive number"});
-    } 
+    // Construir el filtro
+    const filter = { price: { $lte: maxPrice } };
+    if (city && city.trim() !== "") {
+        // Búsqueda insensible a mayúsculas/minúsculas
+        filter.city = { $regex: new RegExp(city, "i") };
+    }
 
-    // 2. Filtrar todos los apartamentos de la base de datos por TODOS los criterios de búsqueda que ha informado el usuario
-    const filteredApartments = await Apartment.find({ price: { $lte: maxPrice }});
+    // 2. Filtrar todos los apartamentos de la base de datos por los criterios de búsqueda
+    const filteredApartments = await Apartment.find(filter);
 
-    // 3. Enviar un JSON con todos los apartamentos que cumplen con el precio máximo
+    // 3. Enviar un JSON con todos los apartamentos que cumplen con los criterios
     res.json(filteredApartments);
-
 }

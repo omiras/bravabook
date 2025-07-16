@@ -44,6 +44,10 @@ const apartmentSchema = new Schema({
         required: true,
         maxLength: 40
     },
+    city: {
+        type: String,
+        required: true
+    },
     price: {
         type: Number,
         required: true

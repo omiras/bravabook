@@ -12,21 +12,17 @@ export const getNewApartment = (req, res)=> {
 
 export const postNewApartment = async (req, res)=> {
 
-    const { title, price, size, mainPhoto} = req.body;
+    const { title, city, price, size, mainPhoto} = req.body;
 
-    // Aquí es un buen momento para validar los datos que proceden del cliente, y lanzar un error si estos no son válidos
-     // 1. Buena práctica
-     // 2. Lo que no controles o sea difícil controlar a la hora de crear un documento en la base de datos, a veces es más fácil comprobarlo en este punto
-     // Ampliar la seguridad <------> complejidad de tu código
-
-     if (!title || title.length>40) {
-        // nos ha llegado una entrada errónea a nuestro back end
-        return res.status(400).send('Ups! Validación en el controlador. Algo ha ido mal! Hemos informado a los desarrolladres. <a href="/">Volver al HOME</a>');
-     }
+    // Validación básica
+    if (!title || title.length > 40 || !city) {
+        return res.status(400).send('Ups! Validación en el controlador. Algo ha ido mal! Hemos informado a los desarrolladores. <a href="/">Volver al HOME</a>');
+    }
 
     try {
         await Apartment.create({
             title: title,
+            city: city,
             price: price,
             squareMeters: size,
             mainPhoto: mainPhoto,
@@ -35,7 +31,6 @@ export const postNewApartment = async (req, res)=> {
                 parking: false,
                 disability: false
             }
-
         });
 
         // Actualizamos la variable 'info' de req.session.info para informar al cliente de que se ha añadido el apartamento corectamente
@@ -62,10 +57,6 @@ export const getEditApartment = async (req, res) => {
         apartment,
         editMode: true
     })
-
-    // 3. En plantilla EJS, rellenar cada uno de los campos formulario con el valor de cada uno de los campos del documento
-
-
 }
 
 export const postEditApartment = async (req, res) => {
@@ -77,6 +68,7 @@ export const postEditApartment = async (req, res) => {
     // Actualizar el documento de la base de datos dado su id
     await Apartment.findByIdAndUpdate(id, {
         title: req.body.title,
+        city: req.body.city,
         price: req.body.price,
         squareMeters: req.body.size,
         mainPhoto: req.body.mainPhoto
