@@ -16,7 +16,7 @@
             <article><img src="<%= apartment.mainPhoto %>" alt=""></article>
             <footer><%= apartment.price %> € | <%= apartment.squareMeters %> m<sup>2</sup> </footer>
         </section>
-        <section>
+        <section id="reservation">
           <div class="container">
             <% if (isAuthenticated) { %>
                 <a href="/admin/apartment/<%= apartment._id %>/edit/">Editar apartamento</a>
